@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin panel</title>
+  <link rel="stylesheet" href="adminStyle.css">
+ 
+  <script >
+    let addBtn = document.getElementById("addBtn");
+     addBtn.addEventListener("click", displayForm)
+    function displayForm(){
+    let container = document.getElementsByClassName("container");
+    container.style.display = "block";
+}
+  </script>
+
+</head>
+<body>
+  <div class = "container" id = "container" style = "display:none;">
+  <h3>Добавяне на услуга</h3>
+  <div class = "form">
+    <form method="post">
+      <div class = "form-group">
+        <label for="serviceName">Име на услугата:</label>
+        <input type="text"id="serviceName" name="serviceName" required>
+      </div>
+      <div class = "form-group">
+        <label for="timeForExecution">Време за изпълнение (в минути):</label>
+         <input type="number" id="timeForExecution" name="timeForExecution" required>
+      </div>
+      <div class = "button-container">
+         <button  type="submit" class = "insertBtn" id = "insertBtn">Добави услуга</button>
+      </div>
+    </form>
+    
+  </div>
+  </div>
+  <div style="width: 25%; margin: 0 auto;" >
+    <button type="button"  id="addBtn">Добави услуга</button>
+</div>
+
+
+  
+</body>
+</html>
