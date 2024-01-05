@@ -1,3 +1,30 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "mCarService";
+
+try {
+  $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   echo "Connected successfully";
+} catch (PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($_POST['price'])) {
+
+
+  $Name = $_POST['serviceName'];
+  $Mins = $_POST['timeForExecution'];
+  $Price = $_POST['price'];
+  
+   // заявка към базата, с която се записват полетата
+   $sql = "INSERT INTO Services (name, timeForExecution,price) VALUES (?,?,?)";
+   $connection->prepare($sql)->execute([$Name, $Mins, $Price]);
+   echo "<b style='color:green;'>Успешно добавихте услуга.</b><br><br>";
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +34,8 @@
     <title>BMW repair</title>
     <link rel="stylesheet" href="styles/navbar-style.css">
     <link rel="stylesheet" href="styles/chooseAservice-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="styles/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src = "scriptForServices.js"></script>
     <style>
        .hero .hero-image{
@@ -89,7 +115,7 @@
   </nav>
   <div class = "hero">
     <div class ="hero-image">
-    <div class = hero-text>
+    <div class = "hero-text">
     <h1>Bmw сервизни услуги от M car Service</h1>
     <a class = "choose" href="" >Избери услуга</a>
   </div>
@@ -107,4 +133,64 @@
     </div>
   </div>
 </div>
+<div class = "info-container">
+  <div class = "info">
+    <div class = "info-text">
+      <h2>ВЗЕМИ КОЛА НА ЛЮБИМАТА СИ МАРКА ПОД НАЕМ ДОКАТО НИЕ СЕ ПОГРИЖИМ ЗА ТВОЯТА</h2>
+      <p>При нас можеш можеш да си наемеш автомобил доката твоят е в сервиза и така да не усетиш липсата на автомобил. Разполагаме с голям избор от автомобили на марката BMW, от лусксозни лимузини до спортни купета. Не се колебай, а наеми автомобила, от който имаш нужда.</p>
+      <a href="" style = "float: left;">Наеми</a>
+    </div>
+    <div class = "info-image">
+      <img src="./images/bmw-rent.jpg "alt="">
+    </div>
+  </div>
+</div>
+
+
 </header>
+<div class = "tableContainer">
+<div class = "tableContainerContent">
+  <table class="table table-striped table-hover" >
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Име на услугата</th>
+        <th scope="col">Време за изпълнение</th>
+        <th scope="col">Цена</th>
+        <th scope="col"></th>
+      </tr> 
+    </thead>
+    <tbody>
+    <?php
+  $sql = "Select * from `Services`";
+  $result = $connection->query($sql);
+  if ($result) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          $id = $row['id'];
+          $name = $row['name'];
+          $timeForExecution = $row['timeForExecution'];
+          $price = $row['price'];
+          echo '<tr>
+          <th scope="row">' . $id . '</th>
+          <td class="nameDB">' . $name . '</td>
+          <td class="timeDB">' . $timeForExecution. ' мин</td>
+          <td class="nameDB">' . $price . 'лв</td>
+          <td>
+          
+          <button class="btn btn-primary" id>
+          <a href="delete.php?deleteid='.$id.'" class="text-light">
+          </a>
+          <div class="editTextArea">Избери</div>
+          </button>
+        </tr>';
+    
+      }
+  }
+  ?>
+  
+    
+     
+    </tbody>
+  </table>
+  </div>
+</body>

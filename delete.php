@@ -14,11 +14,23 @@ try {
 
 if(isset($_GET['deleteid'])){
     $id = $_GET['deleteid'];
-    
-    // Use prepared statement to prevent SQL injection
+
     $sql = "DELETE FROM Services WHERE id = ?";
     $stmt = $connection->prepare($sql);
     $stmt->execute([$id]);
+
+    if($stmt){
+        header('location:AdminPanel.php');
+    } else {
+        die($e->getMessage());
+    }
+}
+if(isset($_GET['deleteidMechanic'])){
+    $idMechanic = $_GET['deleteidMechanic'];
+
+    $sql = "DELETE FROM mechanics WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([$idMechanic]);
 
     if($stmt){
         header('location:AdminPanel.php');
