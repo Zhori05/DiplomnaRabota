@@ -51,8 +51,6 @@ if (isset($_POST['submit'])) {
 
     <!-- Bootstrap v5.1.3 CDNs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!-- CSS File -->
-    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
     <script src="/js/validation.js"defer></script>
 

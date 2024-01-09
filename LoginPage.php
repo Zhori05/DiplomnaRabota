@@ -12,7 +12,7 @@ $database = "mCarService";
 try {
   $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  // echo "Connected successfully";
+    echo "Connected successfully";
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
@@ -30,8 +30,9 @@ if (isset($_POST['submit'])) {
     if ($user && password_verify($Password, $user['Password'])) {
         // ако са въведени правилни име и парола се задава масива user в сесията
         $_SESSION['user'] = $user;
+        $user_id = $_SESSION['user']['user_id'];
 
-        header("location: index.php");
+        header("location: bookAService.php");
         exit;
     } else {
         echo "<b style='color:red;'>Невалидни потребителски данни</b><br><br>";
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 	
-?>	
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +54,7 @@ if (isset($_POST['submit'])) {
 
     <!-- Bootstrap v5.1.3 CDNs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!-- CSS File -->
-    <link rel="stylesheet" href="style.css">
+    
 
 </head>
 
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
 
 body {
 
-    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(mph-club-a.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("images/introduction-fast-lane-service.jpg");
     font-size: 25px;
     background-position: center;
     background-size: cover;

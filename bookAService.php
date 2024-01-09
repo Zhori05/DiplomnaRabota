@@ -1,3 +1,48 @@
+<?php
+
+session_start();
+
+// Проверка за логнат потребител
+if (!isset($_SESSION['user'])) {
+    header("location: LoginPage.php");
+    exit();
+}
+
+// Достъп до информацията за логнатия потребител
+$user = $_SESSION['user'];
+
+// Изписване на информацията
+echo "Добре дошъл, " . $user['Name'] . "!";
+
+$user_id = $_SESSION['user']['iduser'];
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "mCarService";
+
+try {
+    $connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+    $user_id = $_SESSION['user']['iduser'];
+    $stmt = $connection->prepare("SELECT * FROM cars WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $user_cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+
+} catch (PDOException $e) {
+    echo "Грешка при връзка с базата данни: " . $e->getMessage();
+}
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +59,7 @@
     
         <div class="container">
             
-            <form method = "post" id = "myForm">
+            <form method = "post" id = "myForm" enctype="multipart/form-data">
                 <div class = "tab">
                 <div class = "row">
                     <div class = "col-25">
@@ -22,81 +67,22 @@
                     </div>
                     <div class = "col-75">
                         <select id="car" name="car">
-                            <option value="oilChange">Смяна на масло</option>
-                            <option value="anty-freezeChange">Смяна на охладителна течност</option>
-                            <option value="brake-padsChane">Смяна на накладки</option>
+                        <?php foreach ($user_cars as $car) : ?>
+                            <option value="<?php echo $car['car_id']; ?>">
+                            <?php echo $car['brand'] . ' ' . $car['model'] . ' (' . $car['license_plate'] . ')'; ?>
+                            
+                        </option>
+                        <?php endforeach; ?>
                           </select>
                     </div>
                 </div>
                
                   <div class = "row">
                     <p>Ако не си ползвал нашите услуги и нямаш коли в списъка можеш да си добавиш</p>
-                    <button type="button" id="addCarBtn">Добави колата си</button>
+                    <a href="addCar.html">Добави колата си</a>
                   </div>
-                  <div class = "addCar">
-                  <div class = "row">
-                    <div class = "col-25">
-                        <label for = "brand"></i>Марка</label>
-                    </div>
-                    <div class = "col-75">
-                        <select id="brand" name="brand"  data-addcar required>
-                            <option value="BMW">BMW</option>
-                            <option value="Mini">Mini</option>
-                            <option value ="Rolce Roys">Rolce Roys</option>
-                          </select>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "model"></i>Модел</label>
-                    </div>
-                    <div class = "col-75">
-                        <input type="text" id="model" name="model" data-addcar placeholder="Модел.." required>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "year"></i>Година</label>
-                    </div>
-                    <div class = "col-75">
-                        <input type="number" id="year" name="year" data-addcar placeholder="Година.."required>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "color"></i>Цвят</label>
-                    </div>
-                    <div class = "col-75">
-                        <input type="text" id="color" name="color" placeholder="Цвят.." data-addcar required>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "registration"></i>Регистрационен номер</label>
-                    </div>
-                    <div class = "col-75">
-                        <input type="text" id="registration" name="registration" placeholder="Регистрационен номер.." data-addcar required>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "kilometers"></i>Пробег</label>
-                    </div>
-                    <div class = "col-75">
-                        <input type="number" id="kilometers" name="kilometers" placeholder="Пробег.." data-addcar required>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "picture"></i>Снимка</label>
-                    </div>
-                    <div class = "col-75">
-                        <input type="file" name="Img" data-addcar >
-                    </div>
-                </div>
-                </div>
-
-               </div>
+                        </div>
+                  
       <div class = "tab">
                 <div class = "row">
                     <div class = "col-25">

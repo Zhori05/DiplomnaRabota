@@ -89,19 +89,7 @@ input[type=text],[type = datetime-local],[type = number] ,[type = file], select,
       outline: none;
   }
 
-  .addCar{
-    display: none;
-  }
-  a{
-    font-size: 16px;
-    background-color: #6fbcf7;
-    padding: 10px 15px; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  
 
   @media screen and (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {

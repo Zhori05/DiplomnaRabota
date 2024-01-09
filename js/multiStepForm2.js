@@ -1,14 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    let addCarBtn = document.getElementById("addCarBtn");
-    let addCarForm = document.querySelector(".addCar");
-    addCarBtn.addEventListener("click", displayAddCarForm);
-
-    function displayAddCarForm() {
-        addCarForm.style.display = "block";
-        addCarBtn.classList.add('active');
-    }
-
     let currentTab = 0; // текущата стъпка
     showTab(currentTab); // показва текущата стъпка
 
@@ -46,10 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function nextPrev(n) {
         const tabs = document.querySelectorAll('.tab');
 
-        // Добавяме проверка дали бутона "addCarBtn" е натиснат
-        if (n === 1 && addCarBtn.classList.contains('active') && !validateForm()) {
-            return false;
-        }
+        
 
         tabs[currentTab].style.display = 'none';
         currentTab = currentTab + n;
