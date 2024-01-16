@@ -18,11 +18,15 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution'])  && isset(
   $Mins = $_POST['timeForExecution'];
   $Price = $_POST['price'];
   $Range = $_POST['range'];
-  
+  try{
    // заявка към базата, с която се записват полетата
-   $sql = "INSERT INTO Services (name, timeForExecution,price,range) VALUES (?,?,?,?)";
-   $connection->prepare($sql)->execute([$Name, $Mins, $Price,$Range]);
-   echo "<b style='color:green;'>Успешно добавихте услуга.</b><br><br>";
+   $sql = "INSERT INTO Services (`name`, `timeForExecution`, `price`, `range`) VALUES (?, ?, ?, ?)";
+$connection->prepare($sql)->execute([$Name, $Mins, $Price, $Range]);
+echo "<b style='color:green;'>Успешно добавихте услуга.</b><br><br>";
+
+  }catch(PDOException $e){
+    echo "Error: " . $e->getMessage();
+  }
     
 }
 if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['specializedIn'])) {

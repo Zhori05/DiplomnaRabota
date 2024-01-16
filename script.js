@@ -37,37 +37,7 @@ function editService(event) {
   nameField.value = nameDB;
   minsField.value = timeDB.replace(/\D/g, '');
 
-  let data = JSON.stringify({
-      id: id,
-      name: nameField.value,
-      time: minsField.value
-  });
-
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "update.php", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-          if (xhr.status == 200) {
-              // Remove the row from the table
-              row.remove();
-
-              // Add the updated row to the table
-              let updatedRow = document.createElement("tr");
-              updatedRow.innerHTML = xhr.responseText;
-              document.querySelector("tbody").appendChild(updatedRow);
-          } else {
-              console.error("Error updating record:", xhr.status, xhr.statusText);
-          }
-      }
-  };
-
-  xhr.send(data);
 }
-
-  // ... останалата част от вашия код ...
-
   let editMechanicBtns = document.getElementsByClassName("editMechanicBtn");
   for (let i = 0; i < editMechanicBtns.length; i++) {
     editMechanicBtns[i].addEventListener("click", editMechanic);
@@ -92,15 +62,9 @@ function editService(event) {
     emailField.value = emailDB;
     specializedInField.value = specializedInDB;
 
-    // Променете логиката за изпращане на данните на сървъра, за да обновява съществуващ механик
-    // ...
-
-    // Покажете формата за добавяне на механик
-    mechanicContainer.style.display = "block";
-    addMechanicBtn.style.display = "none";
+   
   }
 
-  // ... останалата част от вашия код ...
 
 
 
