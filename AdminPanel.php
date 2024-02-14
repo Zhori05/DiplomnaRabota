@@ -29,16 +29,17 @@ echo "<b style='color:green;'>Успешно добавихте услуга.</b
   }
     
 }
-if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['specializedIn'])) {
+if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['logInCode']) && isset($_POST['specializedIn'])) {
 
 
   $Name = $_POST['mechanicName'];
   $Email = $_POST['email'];
+  $logInCode = $_POST['logInCode'];
   $Specialization = $_POST['specializedIn'];
   
    // заявка към базата, с която се записват полетата
-   $sql = "INSERT INTO mechanics (name, email,specializedIn) VALUES (?,?,?)";
-   $connection->prepare($sql)->execute([$Name, $Email, $Specialization]);
+   $sql = "INSERT INTO mechanics (name, email,logIncode,specializedIn) VALUES (?,?,?,?)";
+   $connection->prepare($sql)->execute([$Name, $Email,$logInCode, $Specialization]);
    echo "<b style='color:green;'>Успешно добавихте механик.</b><br><br>";
     
 }
@@ -57,6 +58,27 @@ if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['spe
 
 </head>
 <body>
+<div class = "nav-container">
+<nav class="navbar bg-dark border-bottom border-body mb-4" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <button class="nav-link btn btn-primary" id="servicesBtn" >Услуги</button>
+            <button class="nav-link btn btn-primary" id= "mechanicsBtn" >Механици</button>
+            <button class="nav-link btn btn-primary" id= "appointmentsBtn" >Часове</button>
+            <button class="nav-link btn btn-primary" >Disabled</button>
+      </div>
+    </div>
+  </div>
+</nav>
+</nav>
+</div>
+<div class = "serviceContainer" id = "serviceContainer">
   <div class = "container" id = "container">
   <h3>Добавяне на услуга</h3>
   <div class = "form">
@@ -86,11 +108,11 @@ if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['spe
   </div>
   <div style="width: 25%; margin: 0 auto;" >
     <button type="button" class = "btn btn-primary" id="addBtn">Добави услуга</button>
-</div>
-<br>
-<br>
-<div class = "tableContainer">
-<table class="table table-striped table-hover" >
+ </div>
+ <br>
+  <br>
+  <div class = "tableContainer">
+  <table class="table table-striped table-hover" >
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
@@ -103,9 +125,9 @@ if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['spe
   </thead>
   <tbody>
   <?php
-$sql = "Select * from `Services`";
-$result = $connection->query($sql);
-if ($result) {
+  $sql = "Select * from `Services`";
+  $result = $connection->query($sql);
+  if ($result) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $id = $row['id'];
         $name = $row['name'];
@@ -125,7 +147,7 @@ if ($result) {
     <i class="fa-solid fa-pen-to-square"></i>
   </a>
   <div class="editTextArea">Промени</div>
-</button>
+  </button>
 
         <button class="btn btn-danger">
         <a href="delete.php?deleteid='.$id.'" class="text-light">
@@ -136,15 +158,17 @@ if ($result) {
       </tr>';
   
     }
-}
-?>
+ }
+ ?>
 
   
    
   </tbody>
-</table>
-</div>
-<div class = "container" id = "containerForMechanic">
+ </table>
+ </div>
+ </div>
+ <div class = "mechanicsContainer" id = "mechanicsContainer">
+ <div class = "container" id = "containerForMechanic">
   <h3>Добавяне на механик</h3>
   <div class = "form">
     <form method="post">
@@ -155,6 +179,10 @@ if ($result) {
       <div class = "form-group">
         <label for="email">Имейл:</label>
          <input type="text" id="email" name="email" required>
+      </div>
+      <div class = "form-group">
+        <label for="logInCode">Код за влизане:</label>
+         <input type="text" id="logInCode" name="logInCode" required>
       </div>
       <div class = "form-group">
         <label for="specializedIn">Специалност:</label>
@@ -221,9 +249,86 @@ if ($result) {
 ?>
 
   
+  
+  </tbody>
+</table>
+</div>
+</div>
+ <div class = "appointmentsContainer"  id="appointmentsContainer">
+ <div class = "tableContainer">
+ <table class="table table-striped table-hover" >
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Име на собственика</th>
+      <th scope="col">Кола</th>
+      <th scope="col">Услуга</th>
+      <th scope="col">Име на механик</th>
+      <th scope="col">Начало</th>
+      <th scope="col">Край</th>
+      <th scope="col">Допълнителна информация</th>
+      <th scope="col">Операции</th>
+
+
+    </tr> 
+  </thead>
+  <tbody>
+  <?php
+ $sql = "SELECT a.id, u.name AS carOwner, c.brand, c.model, a.serviceName, a.mechanicName, a.dateTime, a.endDateTime, a.moreInfo
+ FROM `apointments` AS a
+ INNER JOIN `users` AS u ON a.idCarOwner = u.iduser
+ INNER JOIN `cars` AS c ON a.idcar = c.car_id";
+
+ $result = $connection->query($sql);
+
+ if ($result) {
+ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+ $idAppointment = $row['id'];
+ $carOwner = $row['carOwner'];
+ $carBrand = $row['brand'];
+ $carModel = $row['model'];
+ $serviceName = $row['serviceName'];
+ $mechanicName = $row['mechanicName'];
+ $dateTime = $row['dateTime'];
+ $endDateTime = $row['endDateTime'];
+ $moreInfo = $row['moreInfo'];
+
+
+        echo '<tr>
+        <th scope="row">' . $idAppointment . '</th>
+        <td class="carOwnerDB">' . $carOwner . '</td>
+        <td class="carDB">' . $carBrand . ' ' . $carModel . '</td>
+        <td class="serviceNameDB">' . $serviceName . '</td>
+        <td class="mechanicNameDB">' . $mechanicName . '</td>
+        <td class="dateTimeDB">' . $dateTime . '</td>
+        <td class="endDateTimeDB">' . $endDateTime . '</td>
+        <td class="moreInfoDB">' . $moreInfo . '</td>
+
+        <td>
+        <button class="btn btn-primary editApointmentBtn">
+  <a href="" class="text-light">
+    <i class="fa-solid fa-pen-to-square"></i>
+  </a>
+  <div class="editTextArea">Промени</div>
+ </button>
+
+        <button class="btn btn-danger">
+        <a href="delete.php?deleteidAppointment='.$idAppointment.'" class="text-light">
+        <i class="fa-solid fa-trash"></i>
+        </a>
+        <div class="editTextArea">Изтрий</div>
+        </button>
+      </tr>';
+  
+    }
+}
+?>
+
+  
    
   </tbody>
 </table>
+</div>
 </div>
 </body>
 </html>

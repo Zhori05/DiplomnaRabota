@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (n === tabs.length - 1) {
                 nextBtn.innerHTML = 'Направи запитване';
+                nextBtn.type = 'submit'; // Промяна на типа на бутона на "submit"
             } else {
                 nextBtn.innerHTML = 'Напред';
+                nextBtn.type = 'button'; // Ако не е последната стъпка, възстановете типа на бутона
             }
 
             // Маркира текущата стъпка като активна

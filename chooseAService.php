@@ -52,7 +52,7 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
       <input type="radio" name="slider" id="close-btn">
       <ul class="nav-links">
         <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-        <li><a href="a-c_service.html">Начало</a></li>
+        <li><a href="home.html">Начало</a></li>
         <li><a href="#">За нас</a></li>
         <li>
           <a href="#" class="desktop-item">Dropdown Menu</a>
@@ -66,7 +66,7 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
           </ul>
         </li>
         <li>
-          <a href="#" class="desktop-item">Услуги</a>
+          <a href="chooseAService.php" class="desktop-item">Услуги</a>
           <input type="checkbox" id="showMega">
           <label for="showMega" class="mobile-item">Услуги</label>
           <div class="mega-box">
@@ -117,7 +117,13 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
     <div class ="hero-image">
     <div class = "hero-text">
     <h1>Bmw сервизни услуги от M car Service</h1>
-    <a class = "choose" href="" >Избери услуга</a>
+    <a class = "choose" href="#tableContainer" >Избери услуга</a>
+    <script>
+  document.querySelector('a[href="#tableContainer"]').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('tableContainer').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
   </div>
   </div>
 </div>
@@ -129,7 +135,7 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
     <div class = "info-text">
       <h2>РЕЗЕРВИРАЙТЕ ОНЛАЙН ЧАС ЗА ОБСЛУЖВАНЕ - БЪРЗО И ЛЕСНО.</h2>
       <p>Доброто обслужване започва онлайн - бързо, лесно и по всяко време. Независимо дали става дума за сервиз на спирачки, смяна на масло или друга услуга, с нашата система за запазване на часове можете да запазите час за когато ви е най-удобно. В крайна сметка никой не познава по-добре автомобила ви от нашите специалисти. Просто изберете желаната от вас услуга и след това изберете час от свободните. </p>
-      <a href="">Запази час</a>
+      <a href="bookAService.php">Запази час</a>
     </div>
   </div>
 </div>
@@ -148,7 +154,8 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
 
 
 </header>
-<div class = "tableContainer">
+<div class = "tableContainer" id ="tableContainer">
+  <h1>Избери услуга</h1>
 <div class = "tableContainerContent">
   <table class="table table-striped table-hover" >
     <thead class="table-dark">
@@ -177,11 +184,11 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
           <td class="nameDB">' . $price . 'лв</td>
           <td>
           
-          <button class="btn btn-primary" id>
-          <a href="delete.php?deleteid='.$id.'" class="text-light">
+          <button class="btn btn-primary">
+          <a href="bookAService.php?id=' . $id . '"> <!-- Променено тук -->
+              <div class="editTextArea">Избери</div>
           </a>
-          <div class="editTextArea">Избери</div>
-          </button>
+      </button>
         </tr>';
     
       }
@@ -193,4 +200,49 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
     </tbody>
   </table>
   </div>
+  <footer>
+  <div class = "top-footer-container">
+  <div class = "footer-content">
+    <div class = "foot">
+      <h1>Контакти</h1>
+      <ul >
+        <li><a href ="#"><i class="fa-solid fa-phone"></i> +359 7799 333</a></li>
+        <li><a href ="#"><i class="fa-solid fa-envelope"></i> m_car_service@gmail.com</a></li>
+        <li><a href ="#"><i class="fa-solid fa-location-dot"></i> гр.София ул.Христо Ботев 3</a></li>
+        <li><a href ="#"><i class="fa-regular fa-calendar-days"></i>  Понеделник - Петък: 9:30 - 18:30</a></li>
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Oще</h1>
+      <ul>
+        <li><a href ="#">Блог</a></li>
+        <li><a href ="#">Рент а кар</a></li>
+        <li><a href ="#">За нас</a></li>
+        
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Полезни връзки</h1>
+      <ul>
+        <li><a href ="#">Проекти</a></li>
+        <li><a href ="#">Общи условия</a></li>
+        <li><a href ="#">Често задавани въпроси</a></li>
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Социални мрежи</h1>
+      <ul>
+        <li><a href ="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+        <li><a href ="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+        <li><a href ="#"><i class="fa-brands fa-youtube"></i></a> Youtube</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class = "bottom-footer-container">
+    <div class ="bottom-content">
+      <p>&copy All rights reserved 2023.</p>
+    </div>
+  </div>
+</footer>
 </body>

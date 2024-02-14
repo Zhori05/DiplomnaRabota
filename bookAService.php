@@ -31,19 +31,86 @@ try {
 
     $user_cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-   $stmt_services = $connection->query("SELECT * FROM Services");
+    $stmt_services = $connection->query("SELECT * FROM Services");
     $services = $stmt_services->fetchAll(PDO::FETCH_ASSOC);
 
-   $stmt_mechanics = $connection->query("SELECT * FROM mechanics");
+    $stmt_mechanics = $connection->query("SELECT * FROM mechanics");
     $mechanics = $stmt_mechanics->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
     echo "Грешка при връзка с базата данни: " . $e->getMessage();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Form submission logic
+    $dateTime = $_POST['datetime'];
+    $dayOfWeek = (new DateTime($dateTime))->format('w');
+    $hour = (new DateTime($dateTime))->format('H');
 
+    if ($dayOfWeek == 0 || $hour < 9 || $hour >= 18) {
+        echo "Грешка: Работното време на сервиза е понеделник-събота от 9:00 до 18:00. Опитваш да запишеш час извън работно време";
+        exit();
+       
+    }
+
+    // Останалата част от вашата логика
+    $idcar = $_POST['car'];
+    $serviceName = $_POST['service'];
+    $mechanicName = $_POST['mechanicName'];
+    $moreInfo = $_POST['more'];
+
+    // Проверка на наличие на запис за съответния ден и час, услуга и механик
+    $stmt_service_time = $connection->prepare("SELECT timeForExecution FROM Services WHERE name = :service_name");
+    $stmt_service_time->bindParam(':service_name', $serviceName);
+    $stmt_service_time->execute();
+    $serviceTimeForExecution = $stmt_service_time->fetchColumn();
+
+    if (!$serviceTimeForExecution) {
+        var_dump($serviceName);
+        echo "Грешка: Невалидно име на услуга.";
+        exit();
+    }
+
+    // Проверка на наличие на запис за съответния ден и час, услуга и механик
+    try {
+        $endDateTime = (new DateTime($dateTime))->add(new DateInterval('PT' . $serviceTimeForExecution . 'M'))->add(new DateInterval('PT45M'));
+
+        $stmt_check = $connection->prepare("SELECT * FROM apointments WHERE 
+        ((dateTime > :start_time AND endDateTime < :end_time) OR 
+        (dateTime < :start_time AND endDateTime > :start_time) OR
+        (dateTime < :end_time AND endDateTime > :end_time)) 
+        AND mechanicName = :mechanic");
+
+        $stmt_check->bindParam(':start_time', $dateTime);
+        $stmt_check->bindParam(':end_time', $endDateTime->format('Y-m-d H:i:s'));
+        $stmt_check->bindParam(':mechanic', $mechanicName);
+        $stmt_check->execute();
+
+        $existing_appointments = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!empty($existing_appointments)) {
+            echo "Грешка: Избраните ден, час, услуга и механик са заети. Моля, изберете други.";
+            exit();
+        }
+    } catch (PDOException $e) {
+        echo "Грешка при проверка за наличие на запис: " . $e->getMessage();
+        exit();
+    }
+
+    // Вмъкване на данните в таблицата "appointments"
+    try {
+        $sql = "INSERT INTO apointments (idCarOwner, idcar, ServiceName, mechanicName, dateTime, moreInfo, endDateTime) VALUES (?,?,?,?,?,?,?)";
+        $connection->prepare($sql)->execute([$user_id, $idcar, $serviceName, $mechanicName, $dateTime, $moreInfo, $endDateTime->format('Y-m-d H:i:s')]);
+        var_dump($user_id, $idcar, $serviceName, $mechanicName, $dateTime, $moreInfo, $endDateTime->format('Y-m-d H:i:s'));
+        echo "Appointment added successfully!";
+    } catch (PDOException $e) {
+        echo "Error adding appointment: " . $e->getMessage();
+    }
+}
 
 ?>
+
+
 
 
 
@@ -85,47 +152,65 @@ try {
                
                   <div class = "row">
                     <p>Ако не си ползвал нашите услуги и нямаш коли в списъка можеш да си добавиш</p>
-                    <a href="addCar.html">Добави колата си</a>
+                    <a href="addCar.php">Добави колата си</a>
                   </div>
                         </div>
                   
       <div class = "tab">
-                <div class = "row">
-                    <div class = "col-25">
-                        <label for = "serviceName"><i class="fa-solid fa-wrench"></i> Услуга</label>
-                    </div>
-                    <div class = "col-75">
-                        <select id="service" name="service" required>
-                        <?php foreach ($services as $service) : ?>
-                            <option value="<?php echo $service['id']; ?>" data-range="<?php echo $service['range']; ?>">
-                    <?php echo $service['name']; echo $service['range']; ?>
-                </option>
-            <?php endforeach; ?>
-                          </select>
-                          <input type="range" id="serviceRange" name="serviceRange" min="0" max="100" step="1" value="0" disabled>
-                    </div>
-                </div>
-                <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-..." crossorigin="anonymous"></script>
+      <div class="row">
+    <div class="col-25">
+        <label for="serviceName"><i class="fa-solid fa-wrench"></i> Услуга</label>
+    </div>
+    <div class="col-75">
+    <select id="service" name="service" required>
+        <?php foreach ($services as $service) : ?>
+            <?php
+          $service_id = $_GET['id'];
+
+          // Заявка към базата данни, за да вземете името на услугата
+          $stmt_service_name = $connection->prepare("SELECT name FROM Services WHERE id = :service_id");
+          $stmt_service_name->bindParam(':service_id', $service_id, PDO::PARAM_INT);
+          $stmt_service_name->execute();
+          $service_name = $stmt_service_name->fetchColumn();
+          
+          // След като извлечете името на услугата, можете да го използвате, където е необходимо
+          echo "Име на услугата: " . $service_name;
+          
+          // Примерно използване за сравнение с името на услугата от POST заявката
+          $selected = ($service['name'] == $service_name) ? 'selected' : '';
+            ?>
+            <option value="<?php echo $service['name']; ?>" data-range="<?php echo $service['range']; ?>" <?php echo $selected; ?>>
+                <?php echo $service['name']; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-..." crossorigin="anonymous"></script>
 
 <script>
-$(document).ready(function() {
-    $('#service').change(function() {
-        var selectedService = $('option:selected', this);
-        var rangeValue = selectedService.data('range');
-        $('#serviceRange').val(rangeValue);
+    $(document).ready(function () {
+        $('#service').change(function () {
+            var selectedService = $('option:selected', this);
+            var rangeValue = selectedService.data('range');
+            $('#serviceRange').val(rangeValue);
 
-        // Изпращане на AJAX заявка за зареждане на механици
-        $.ajax({
-            url: 'getMechanics.php',
-            type: 'GET',
-            data: { rangeValue: rangeValue },
-            success: function(data) {
-                // Обновяване на списъка с механици
-                $('#mechanic').html(data);
-            }
+            // Изпращане на AJAX заявка за зареждане на механици
+            $.ajax({
+                url: 'getMechanics.php',
+                type: 'GET',
+                data: { rangeValue: rangeValue },
+                success: function (data) {
+                    // Обновяване на списъка с механици
+                    $('#mechanic').html(data);
+                }
+            });
         });
+
+        // Извикване на събитието 'change' след първоначалното зареждане на страницата
+        $('#service').trigger('change');
     });
-});
 </script>
 
 
@@ -158,7 +243,7 @@ $(document).ready(function() {
                     </div>
                   </div>
                   <div class = "row">
-                    <button type="button" id="pickAService">Направи запитване</button>
+                    <button type="submit" id="pickAService">Направи запитване</button>
                   </div>
            
                 </div>
@@ -172,20 +257,7 @@ $(document).ready(function() {
             </form>
         </div>
 
-        <script>
-    document.getElementById('service').addEventListener('change', function() {
-        var selectedService = this.options[this.selectedIndex];
-        var rangeValue = selectedService.getAttribute('data-range');
-        document.getElementById('serviceRange').value = rangeValue;
-
-        // Променяме стойността на rangeValue, която ще бъде използвана в PHP кода
-        <?php echo "var rangeValue = $rangeValue;"; ?>
-    });
-</script>
-
-
-
 <script src="./js/multiStepForm2.js"></script>
             
 </body>
-</html>     
+</html>

@@ -125,13 +125,22 @@ width: 100%;
   .tableContainer {
     margin-top: 1.5em;
     padding-top: 1em;
+    
     background-color: #faf0e6;
   }
+
+  .tableContainer h1{
+    text-align: center;
+    padding: 0.3em 0;
+    color: #3A3B3C;
+  }
+ 
 
   .tableContainerContent {
     overflow-x: auto;
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 3em;
   }
 
   .table {
@@ -174,6 +183,11 @@ width: 100%;
   .btn-primary:hover {
     background-color: #0056b3;
   }
+  tbody a{
+
+    text-decoration: none;
+    color: white;
+  }
 
 
   @media screen and (max-width: 768px) {
@@ -197,4 +211,43 @@ width: 100%;
         max-width: 100%;
         padding-bottom: 0.5em;
     }
+  }
+
+  footer{
+    background-color: #242526;
+    color: white;
+  }
+    .footer-content{
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 6em;
+    padding: 2em 0;
+    max-width: 1200px;
+  
+  }
+  .foot h1{
+    color: bisque;
+  }
+  .foot ul{
+    text-decoration: none;
+    list-style: none;
+  }
+  .foot a{
+    text-decoration: none;
+    color:#d9d9d9
+  
+  }
+  .foot li{
+    padding-top: 0.5em;
+  }
+  .top-footer-container{
+    border-bottom: 1px solid white;
+  }
+   .bottom-footer-container .bottom-content{
+    text-align: center;
+    padding: 1em ;
+  }
+  .foot i{
+  color: #b4d3de;
   }

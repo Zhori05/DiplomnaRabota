@@ -27,7 +27,7 @@ try {
 
     // Генериране на HTML за опциите на механици
     foreach ($mechanics as $mechanic) {
-        echo '<option value="' . $mechanic['id'] . '">' . $mechanic['name'] . '</option>';
+        echo '<option value="' . $mechanic['name'] . '">' . $mechanic['name'] . '</option>';
     }
 } catch (PDOException $e) {
     die("Грешка при връзка с базата данни: " . $e->getMessage());
