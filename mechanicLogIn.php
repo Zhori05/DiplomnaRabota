@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 
     if ($mechanic) {
         $_SESSION['mechanic'] = $mechanic;
-        header("location: mechanicPage.php");
+        header("location: mechanicPage2.0.php");
         exit;
     } else {
         echo "<b style='color:red;'>Невалидни потребителски данни</b><br><br>";

@@ -40,70 +40,79 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/mechanicPageStyle.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <title>MechanicPage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <!-- add CSS -->
+  <link rel="stylesheet" href="styles/mechanicPage2.0.css">
+  <title>Responsive Side Nav</title>
 </head>
 <body>
-<div class = "header">  
-<div class = "titleContainer">
-    <h1 class = "title"><?php echo "Добре дошъл, " . $mechanic['name'] . ", за нас е чест да бъдеш част от нашия екип"; ?></h1>
+  <nav class="navbar">
+    <div class="logo">
+      <i class="bx bx-menu" id="sidebarOpen"></i>
+      M Car Service
     </div>
-</div>  
-<div class = "sidebar">
-    <div class = "top">
-    <div class = "logo">
-        <i class = "bx bxl-codepen"></i>
-        <span>M Car Service</span>
-        </div> 
-        <i class = " bx bx-menu" id ="btn"></i>
-</div>
-
-<div class = "user">
-    <!-- img src="image" class = "user-img"-->
-        <div>
-            <p class = "bold">Client B.</p>
-            <p>Admin</p>
+  </nav>
+  <nav class="sidebar">
+  <p class="mechanicName"><?php echo "Добре дошъл, " . $mechanic['name']; ?></p>
+    <div class="menu_content">
+      <ul class="menu_items">
+        <li class="menu_item">
+          <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-home"></i>
+          </span>
+          <span class="navlink">Home</span>
+        </a>
+        </li>
+        <li class="menu_item">
+          <a href="#" class="nav_link day-work-link">
+          <span class="navlink_icon">
+          <i class='bx bx-time' ></i>
+          </span>
+          <span class="navlink">Работа за деня</span>
+        </a>
+        </li>
+        <li class="menu_item">
+        <a href="#" class="nav_link services-link">
+          <span class="navlink_icon">
+            <i class="bx bx-layer"></i>
+          </span>
+          <span class="navlink">Services</span>
+        </a>
+        </li>
+        <li class="menu_item">
+        <a href="#" class="nav_link week-work-link">
+    <span class="navlink_icon">
+    <i class='bx bx-calendar-week'></i>
+    </span>
+    <span class="navlink">Работа за седмица</span>
+</a>
+        </li>
+      </ul>
+      <div class="collapse_content">
+        <div class="collapse expand_sidebar">
+          <span> Expand</span>
+          <i class="bx bx-chevron-right"></i>
         </div>
+        <div class="collapse collapse_sidebar">
+          <span> Collapse</span>
+          <i class="bx bx-chevron-left"></i>
         </div>
-        <ul>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-grid-alt"></i>
-                    <span class = "nav-item">Dashboard</span>
-                </a>
-                <span class = "tooltip">Dashboard</span>
-
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bx-time"></i>
-                    <span class = "nav-item">График на деня </span>
-                </a>
-                <span class = "tooltip">График на деня</span>
-                
-            </li><li>
-                <a href="#">
-                <i class='bx bx-calendar'></i>
-                    <span class = "nav-item">График на седмицата</span>
-                </a>
-                <span class = "tooltip">График на седмицата</span>
-                
-            </li>
-        </ul>
-</div>
-<div class="main-content">
-    <div class = "container">
-        <h1>M Car Service</h1>
+      </div>
     </div>
-    <div class = "tableContainer" id ="tableContainer">
+  </nav>
+
+
+  <div class="main-content">
+    <div class="container">
+        
+    </div>
+    <div class="tableContainer" id="tableDayWork">
   <h1>График на деня</h1>
-<div class = "tableContainerContent">
-  <table class="table table-striped table-hover" >
+<div class="tableContainerContent">
+  <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
       <th scope="col">#</th>
@@ -149,18 +158,17 @@ if ($result) {
                 <td class="endDateTimeDB">' . $endDateTime . '</td>
                 <td class="moreInfoDB">' . $moreInfo . '</td>
                 <td>
-                    <button class="btn btn-primary endApointmentBtn">
-                        <a href="" class="text-light">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <div class="endTextArea">Завърши</div>
-                    </button>
+                <button class="btn btn-primary">
+                <a href="serviceComplete.php?id=' . $idAppointment . '">
+                    <div class="editTextArea">Завърши</div>
+                </a>
+            </button>
                    
                 </td>
             </tr>';
     }
 } else {
-    echo "Няма налични апоинтмънти за вашия механик.";
+  echo "<p> <font color=green> За днес нямаш часове</font> </p>";
 }
 ?>
   
@@ -169,10 +177,11 @@ if ($result) {
     </tbody>
   </table>
   </div>
-  <div class = "tableContainer" id ="tableContainer">
+  </div>
+  <div class="tableContainer" id="tableWeekWork" style="display: none;">
   <h1>График за седмицата</h1>
-<div class = "tableContainerContent">
-  <table class="table table-striped table-hover" >
+<div class="tableContainerContent">
+  <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
       <th scope="col">#</th>
@@ -231,12 +240,11 @@ if ($result) {
                 <td class="endDateTimeDB">' . $endDateTime . '</td>
                 <td class="moreInfoDB">' . $moreInfo . '</td>
                 <td>
-                    <button class="btn btn-primary endApointmentBtn">
-                        <a href="" class="text-light">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <div class="endTextArea">Завърши</div>
-                    </button>
+                <button class="btn btn-primary">
+                <a href="serviceComplete.php?id=' . $idAppointment . '">
+                    <div class="editTextArea">Завърши</div>
+                </a>
+            </button>
                    
                 </td>
             </tr>';
@@ -252,17 +260,8 @@ if ($result) {
   </table>
   </div>
 </div>
-
-
-
+<script src="js/mechanicPage2.0.js"></script>
 </body>
-<script>
-    let btn = document.querySelector('#btn');
-    let sidebar = document.querySelector('.sidebar')
-    btn.onclick = function (){
-        sidebar.classList.toggle('active');
-    };
-   
 
-</script>
+
 </html>
