@@ -36,7 +36,6 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
     
 }
 ?>
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,14 +74,6 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
         </a>
         </li>
         <li class="menu_item">
-        <a href="#" class="nav_link services-link">
-          <span class="navlink_icon">
-            <i class="bx bx-layer"></i>
-          </span>
-          <span class="navlink">Services</span>
-        </a>
-        </li>
-        <li class="menu_item">
         <a href="#" class="nav_link week-work-link">
     <span class="navlink_icon">
     <i class='bx bx-calendar-week'></i>
@@ -90,6 +81,15 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
     <span class="navlink">Работа за седмица</span>
 </a>
         </li>
+        <li class="menu_item">
+        <a href="#" class="nav_link services-link">
+        <span class="navlink_icon">
+            <i class='bx bx-calendar-week'></i>
+        </span>
+        <span class="navlink">Свършена работа</span>
+    </a>
+</li>
+      
       </ul>
       <div class="collapse_content">
         <div class="collapse expand_sidebar">
@@ -253,6 +253,69 @@ if ($result) {
     echo "Няма налични апоинтмънти за вашия механик.";
 }
 ?>
+  
+    
+     
+    </tbody>
+  </table>
+  </div>
+</div>
+<div class="tableContainer" id="tableEndedAppointmets"> <!-- Променено тук -->
+  <h1>Извършени услуги последния месец</h1>
+<div class="tableContainerContent">
+  <table class="table table-striped table-hover" >
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Номер на записа</th>
+        <th scope="col">Собственик</th>
+        <th scope="col">Кола</th>
+        <th scope="col">Услуга</th>
+        <th scope="col">Име на механик</th>
+        <th scope="col">Начало</th>
+        <th scope="col">Повече информация</th>
+        <th scope="col">Край</th>
+        <th scope="col">Пробег</th>
+        <th scope="col">Информация след сервизиране</th>
+      </tr> 
+    </thead>
+    <tbody>
+    <?php
+  $sql = "Select * from `endedAppointments`";
+  $result = $connection->query($sql);
+  if ($result) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          $id = $row['id'];
+          $idAppointment = $row['idAppointment'];
+          $idCarOwner = $row['idCarOwner'];
+          $idcar = $row['idcar'];
+          $serviceName = $row['serviceName'];
+          $mechanicName = $row['mechanicName'];
+          $dateTime = $row['dateTime']; 
+          $moreInfo = $row['moreInfo'];
+          $endDateTime = $row['endDateTime'];
+          $mileage = $row['mileage'];
+          $infoAfterServicing = $row['infoAfterServicing'];
+
+          echo '<tr>
+          <th scope="row">' . $id . '</th>
+          <td class="nameDB">' . $idAppointment . '</td>
+          <td class="nameDB">' . $idCarOwner . '</td>
+          <td class="nameDB">' . $idcar . '</td>
+          <td class="nameDB">' . $serviceName . '</td>
+          <td class="nameDB">' . $mechanicName . '</td>
+          <td class="timeDB">' . $dateTime. ' </td>
+          <td class="nameDB">' . $moreInfo . '</td>
+          <td class="timeDB">' . $endDateTime. ' </td>
+          <td class="nameDB">' . $mileage . '</td>
+          <td class="nameDB">' . $infoAfterServicing . '</td>
+          <td>
+          
+        </tr>';
+    
+      }
+  }
+  ?>
   
     
      
