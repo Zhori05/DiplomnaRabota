@@ -54,15 +54,17 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
     </div>
   </nav>
   <nav class="sidebar">
-  <p class="mechanicName"><?php echo "Добре дошъл, " . $mechanic['name']; ?></p>
+    <div class = "mechanic">
+  <p class="mechanicName"><?php echo "Добре дошъл, " . $mechanic['name'] . " !"; ?></p>
+  </div>
     <div class="menu_content">
       <ul class="menu_items">
         <li class="menu_item">
-          <a href="#" class="nav_link">
+          <a href="home.html" class="nav_link">
           <span class="navlink_icon">
             <i class="bx bx-home"></i>
           </span>
-          <span class="navlink">Home</span>
+          <span class="navlink">Начало</span>
         </a>
         </li>
         <li class="menu_item">
@@ -84,7 +86,7 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
         <li class="menu_item">
         <a href="#" class="nav_link services-link">
         <span class="navlink_icon">
-            <i class='bx bx-calendar-week'></i>
+        <i class='bx bx-calendar-check'></i>
         </span>
         <span class="navlink">Свършена работа</span>
     </a>

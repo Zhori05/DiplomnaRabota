@@ -12,7 +12,7 @@
   --light-grey: #aaa;
 }
 body {
-  background-color: #f1f1f1;
+ 
   transition: all 0.5s ease;
 }
 .navbar {
@@ -36,9 +36,7 @@ body {
   font-weight: 500;
   color: var(--main-color);
 }
-.mechanicName {
-  display: none;
-}
+
 
 .sidebar {
   background-color: var(--white);
@@ -57,11 +55,25 @@ body {
   padding: 90px 1px;
   width: 80px;
 }
+.mechanicName{
+  color: #343a40;
+  margin-bottom: 15px;
+  padding: 5px;
+  background-color: #0056b3;
+  text-align: center;
+  border-radius: 10px;
+  color: #f1f1f1;
+}
+.sidebar.close .mechanicName {
+  display: none;
+  
+}
 .sidebar::-webkit-scrollbar {
   display: none;
 }
 .menu_content {
   position: relative;
+  
 }
 .menu_title {
   margin: 15px 0;
@@ -87,6 +99,10 @@ body {
 .menu_items {
   padding: 0;
   list-style: none;
+  background-color: white;
+}
+.menu_item{
+  background-color: white;
 }
 .navlink_icon {
   position: relative;

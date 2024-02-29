@@ -36,6 +36,23 @@
                 const dayWorkTable = document.querySelector("#tableDayWork");
                 const weekWorkTable = document.querySelector("#tableWeekWork");
                 const servicesTable = document.querySelector("#tableEndedAppointmets");
+                const addAppointmentLink = document.querySelector(".add-appointment-link");
+                const addAppointment = document.querySelector(".container");
+                const historyLink  = document.querySelector(".history-link");
+                const historyContainer = document.querySelector(".Your_cars");
+
+                historyLink.addEventListener("click", function(event){
+                    event.preventDefault();
+                    historyContainer.style.display = "block";
+                    addAppointment.style.display = "none";
+                })
+
+                addAppointmentLink.addEventListener("click", function(event){
+                    event.preventDefault();
+                    addAppointment.style.display = "block";
+                    historyContainer.style.display = "none";
+                });
+
 
                 dayWorkLink.addEventListener("click", function(event) {
                     event.preventDefault();
@@ -46,6 +63,7 @@
 
                 weekWorkLink.addEventListener("click", function(event) {
                     event.preventDefault();
+                    
                     weekWorkTable.style.display = "block";
                     dayWorkTable.style.display = "none";
                     servicesTable.style.display = "none";
@@ -56,6 +74,7 @@
                   servicesTable.style.display = "block"; // Показва таблицата за свършена работа
                   dayWorkTable.style.display = "none"; // Скрива таблицата за работа през деня
                   weekWorkTable.style.display = "none"; // Скрива таблицата за работа през седмицата
+            
                   
               
                   // Ако проблемът продължава, опитайте с console.log, за да проверите дали се извиква тази функция.
