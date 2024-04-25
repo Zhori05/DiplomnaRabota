@@ -52,32 +52,76 @@ if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['log
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin panel</title>
   <link rel="stylesheet" href="./styles/adminStyle.css">
-  <script src="script.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/mechanicPage2.0.css">
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
-<div class = "nav-container">
-<nav class="navbar bg-dark border-bottom border-body mb-4" data-bs-theme="dark">
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <button class="nav-link btn btn-primary" id="servicesBtn" >Услуги</button>
-            <button class="nav-link btn btn-primary" id= "mechanicsBtn" >Механици</button>
-            <button class="nav-link btn btn-primary" id= "appointmentsBtn" >Часове</button>
-            <button class="nav-link btn btn-primary" >Disabled</button>
+<nav class="navbar">
+    <div class="logo">
+      <i class="bx bx-menu" id="sidebarOpen"></i>
+      M Car Service
+    </div>
+  </nav>
+  <nav class="sidebar">
+    <div class = "mechanic">
+  <p class="mechanicName"><?php echo "Добре дошъл, " . $user['name'] . " !"; ?></p>
+  </div>
+    <div class="menu_content">
+      <ul class="menu_items">
+        <li class="menu_item">
+          <a href="home.html" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-home"></i>
+          </span>
+          <span class="navlink">Начало</span>
+        </a>
+        </li>
+        <li class="menu_item">
+          <a href="#" class="nav_link admin-services-link">
+          <span class="navlink_icon">
+          <i class='bx bx-time' ></i>
+          </span>
+          <span class="navlink">Услуги</span>
+        </a>
+        </li>
+        <li class="menu_item">
+        <a href="#" class="nav_link week-work-link">
+    <span class="navlink_icon">
+    <i class='bx bx-calendar-week'></i>
+    </span>
+    <span class="navlink">Работа за седмица</span>
+</a>
+        </li>
+        <li class="menu_item">
+        <a href="#" class="nav_link services-link">
+        <span class="navlink_icon">
+        <i class='bx bx-calendar-check'></i>
+        </span>
+        <span class="navlink">Свършена работа</span>
+    </a>
+</li>
+      
+      </ul>
+      <div class="collapse_content">
+        <div class="collapse expand_sidebar">
+          <span> Expand</span>
+          <i class="bx bx-chevron-right"></i>
+        </div>
+        <div class="collapse collapse_sidebar">
+          <span> Collapse</span>
+          <i class="bx bx-chevron-left"></i>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
-</nav>
-</div>
+  </nav>
+
+  <div class = "main-content">
+
+  
 <div class = "serviceContainer" id = "serviceContainer">
   <div class = "container" id = "container">
   <h3>Добавяне на услуга</h3>
@@ -99,16 +143,11 @@ if (isset($_POST['mechanicName']) && isset($_POST['email']) && isset($_POST['log
         <label for="range">Направление:</label>
         <input type="text"id="range" name="range" required>
       </div>
-      <div class = "buttonContainer">
-         <button  type="submit" class = "insertBtn" id = "insertBtn">Добави услуга</button>
-      </div>
     </form>
     
   </div>
   </div>
-  <div style="width: 25%; margin: 0 auto;" >
-    <button type="button" class = "btn btn-primary" id="addBtn">Добави услуга</button>
- </div>
+  
  <br>
   <br>
   <div class = "tableContainer">
@@ -330,5 +369,9 @@ if ($result) {
 </table>
 </div>
 </div>
+</div>
+<script src="js/mechanicPage2.0.js"></script>
+<script src="script.js"></script>
 </body>
+
 </html>

@@ -30,15 +30,15 @@ if ( isset( $_POST['submit'] ) ) {
 	
 	$stmt = $connection->prepare("SELECT * FROM AdminUser WHERE Email = ? AND AdminId = ?"); 
 	$stmt->execute([ $Email,$AdminId ]); 
-	$user = $stmt->fetch();
+	$admin = $stmt->fetch();
 
   
 	
-	if ($user && password_verify($Password, $user['Password'])) {
+	if ($admin && password_verify($Password, $admin['Password'])) {
         // ако са въведени правилни име и парола се задава масива user в сесията
-        $_SESSION['user'] = $user;
+        $_SESSION['admin'] = $admin;
 
-        header("location: index.php");
+        header("location: adminPage3.php");
         exit;
     } else {
         echo "<b style='color:red;'>Невалидни потребителски данни</b><br><br>";
@@ -53,7 +53,7 @@ if ( isset( $_POST['submit'] ) ) {
 
 <head>
 
-    <title>CODE WITH HOSSEIN</title>
+    <title>Admin login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap v5.1.3 CDNs -->
@@ -128,33 +128,33 @@ body {
 
     <div class="login">
 
-        <h4 class="text-center">Enter in your account!!</h4>
+        <h4 class="text-center">Влез в профила си!!</h4>
         
         <form method="post" class="needs-validation">
             <div class="form-group was-validated">
-                <label class="form-label" for="email">Email Address</label>
+                <label class="form-label" for="email">Имейл</label>
                 <input class="form-control" type="email" name="Email" id="email" required>
                 <div class="invalid-feedback">
-                    Please enter your email address
+                    Моля, въведи имейла си
                 </div>
             </div>
             <div class="form-group was-validated">
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password">Парола</label>
                 <input class="form-control" type="password" name="Password" id="password" required>
                 <div class="invalid-feedback">
-                    Please enter your password
+                    Моля, въведи паролата си 
                 </div>
             </div>
             <div class="form-group was-validated">
                 <label class="form-label" for="AdminId">AdminId</label>
                 <input class="form-control" type="AdminId" name="AdminId" id="AdminId" required>
                 <div class="invalid-feedback">
-                    Please enter your AdminId
+                    Моля, въведи своето AdminId
                 </div>
             </div>
-                <button type="submit" class="btn1 mt-4" name="submit" value="login">Login</button>
+                <button type="submit" class="btn1 mt-4" name="submit" value="login">Влез</button>
             <div> 
-              <p>Don't have an account? <a href = "AdminRegistrationPage.php">Register here!</a></p>
+              <p>Нямаш акаунт? <a href = "AdminRegistrationPage.php">Регистрирай се тук!</a></p>
             </div>
         </form>
     </div>

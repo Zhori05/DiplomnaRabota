@@ -120,35 +120,35 @@ body {
 <body>
 
 <div class="login">
-    <h4 class="text-center">Make a new Registration!</h4>
+    <h4 class="text-center">Направи регистрация!</h4>
     
     <form method="post" class="needs-validation" id="signup" onsubmit="return validateForm()">
         <div class="form-group was-validated">
-            <label class="form-label" for="Name">Enter your names</label>
+            <label class="form-label" for="Name">Имена</label>
             <input class="form-control" type="text" name="Name" id = "name" required>
         </div>
         <div class="form-group was-validated">
-            <label class="form-label" for="Email">Email Address</label>
+            <label class="form-label" for="Email">Имейл</label>
             <input class="form-control" type="Email" name="Email" required>
             <div class="invalid-feedback">
                 Моля въведи имейл адрес
             </div>
         </div>
         <div class="form-group was-validated">
-            <label class="form-label" for="Password">Password</label>
+            <label class="form-label" for="Password">Парола</label>
             <input class="form-control" type="password" name="Password" id="password" required>
             <div class="invalid-feedback" id="password-feedback">
                 Моля въведи парола, която е поне 8 символа
             </div>
         </div>
         <div class="form-group was-validated">
-            <label class="form-label" for="PhoneNumber">Phone Number</label>
+            <label class="form-label" for="PhoneNumber">Телефон</label>
             <input class="form-control" type="text" name="PhoneNumber" required>
         </div>
         <div>
-            <button type="submit" name="submit" value="Register" class="btn1 mt-4">Register</button>
+            <button type="submit" name="submit" value="Register" class="btn1 mt-4">Регистрирай се</button>
         </div> 
-        <p>Already have an account? <a href="LoginPage.php"> Login here!</a></p>
+        <p>Вече имаш профил? <a href="LoginPage.php"> Влез тук!</a></p>
     </form>
 
     <script>

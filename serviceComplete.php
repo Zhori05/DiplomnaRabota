@@ -23,6 +23,7 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
+
 // Проверка дали формата е изпратена
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Вземане на информацията от формата
@@ -73,10 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/bookAService.css">
-    <script src="./js/serviceComplete.js"></script>
-    <script src= "./js/bookAService.js"></script>
-    <link rel="stylesheet" href="styles/addCarStyle.css">
+    <link rel="stylesheet" href="styles/serviceComplete.css">
+    
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Document</title>
@@ -107,4 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
            
                 </div>
+        
 </body>
+</html>

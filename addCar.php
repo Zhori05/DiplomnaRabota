@@ -22,7 +22,6 @@ try {
   }
 if (isset($_POST['submit'])) {
 
-    // записване на данните от полетата в променливи за по-удобно
     $brand = $_POST['brand'];
     $model = $_POST['model'];
     $year = $_POST['year'];

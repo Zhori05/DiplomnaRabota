@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <!-- add CSS -->
+  <link rel="stylesheet" href="testStyle.css">
+  <title>Responsive Side Nav</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+          <i class="bx bx-menu" id="sidebarOpen"></i>
+          M Car Service
+        </div>
+      </nav>
+      <nav class="sidebar">
+        <div class="mechanic">
+          <p class="mechanicName">
+   
+          </p>
+        </div>
+        <div class="menu_content">
+          <ul class="menu_items">
+            <li class="menu_item">
+              <a href="home.html" class="nav_link">
+                <span class="navlink_icon">
+                  <i class="bx bx-home"></i>
+                </span>
+                <span class="navlink">Начало</span>
+              </a>
+            </li>
+            <li class="menu_item">
+              <a href="#" class="nav_link add-service-link">
+                <span class="navlink_icon">
+                  <i class='bx bx-add-to-queue'></i>
+                </span>
+                <span class="navlink">Добавяне на услуга</span>
+              </a>
+            </li>
+            <li class="menu_item">
+              <a href="#" class="nav_link all-services-link">
+                <span class="navlink_icon">
+                  <i class='bx bx-list-ul'></i>
+                </span>
+                <span class="navlink">Услуги</span>
+              </a>
+            </li>
+            <li class="menu_item">
+              <a href="#" class="nav_link add-mechanic-link">
+                <span class="navlink_icon">
+                  <i class='bx bx-add-to-queue'></i>
+                </span>
+                <span class="navlink">Добави механик</span>
+              </a>
+            </li>
+            <li class="menu_item">
+              <a href="#" class="nav_link mechanics-link">
+                <span class="navlink_icon">
+                  <i class='bx bx-wrench'></i>
+                </span>
+                <span class="navlink">Механици</span>
+              </a>
+            </li>
+            <li class="menu_item">
+              <a href="#" class="nav_link appointments-link">
+                <span class="navlink_icon">
+                  <i class='bx bx-calendar'></i>
+                </span>
+                <span class="navlink">Записани часове</span>
+              </a>
+            </li>
+    
+    
+          </ul>
+          <div class="collapse_content">
+            <div class="collapse expand_sidebar">
+              <span> Expand</span>
+              <i class="bx bx-chevron-right"></i>
+            </div>
+            <div class="collapse collapse_sidebar">
+              <span> Collapse</span>
+              <i class="bx bx-chevron-left"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+  <script src="testJSScript.js"></script>
+</body>
+</html>

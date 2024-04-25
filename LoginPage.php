@@ -27,6 +27,11 @@ if (isset($_POST['submit'])) {
     $stmt->execute([$Email]);
     $user = $stmt->fetch();
 
+    $stmt = $connection->prepare("SELECT * FROM blockedUsers WHERE Email = ?");
+    $stmt->execute([$Email]);
+    $blockedUser = $stmt->fetch();
+
+
     if ($user && password_verify($Password, $user['Password'])) {
         // ако са въведени правилни име и парола се задава масива user в сесията
         $_SESSION['user'] = $user;
@@ -34,7 +39,10 @@ if (isset($_POST['submit'])) {
 
         header("location: bookAService.php");
         exit;
-    } else {
+    } elseif($blockedUser && password_verify($Password, $blockedUser['Password'])) {
+        echo "<b style='color:red;'>Вие сте блокиран.<br><br>Ако искате да използвате нашите услуги отново се свържете с нас на тел:088999120</b>";
+       
+    }else{
         echo "<b style='color:red;'>Невалидни потребителски данни</b><br><br>";
     }
 }
@@ -123,26 +131,26 @@ body {
 
     <div class="login">
 
-        <h4 class="text-center">Enter in your account!!</h4>
+        <h4 class="text-center">Влез в профила си!!</h4>
         
         <form method="post" class="needs-validation">
             <div class="form-group was-validated">
-                <label class="form-label" for="email">Email Address</label>
+                <label class="form-label" for="email">Имейл</label>
                 <input class="form-control" type="email" name="Email" id="email" required>
                 <div class="invalid-feedback">
-                    Please enter your email address
+                    Моля, въведи имейла си 
                 </div>
             </div>
             <div class="form-group was-validated">
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password">Парола</label>
                 <input class="form-control" type="password" name="Password" id="password" required>
                 <div class="invalid-feedback">
-                    Please enter your password
+                    Моля, въведи паролата си
                 </div>
             </div>
-                <button type="submit" class="btn1 mt-4" name="submit" value="login">Login</button>
+                <button type="submit" class="btn1 mt-4" name="submit" value="login">Влез</button>
             <div> 
-              <p>Don't have an account? <a href = "registration-form.php">Register here!</a></p>
+              <p>Нямаш профил? <a href = "registration-form.php">Регистрирай се тук!</a></p>
             </div>
         </form>
     </div>

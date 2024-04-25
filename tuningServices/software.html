@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Софтуер</title>
+    <link rel="stylesheet" href="../styles/navbar-style.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../styles/servicePage.css">
+    <style>.hero .hero-image{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bmw-335i-diagnostics.jpg");
+    }
+    </style>
+    <style>
+        * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+        input[type=text], select, textarea {
+            width: 100%; /* Full width */
+            padding: 16px; /* Some padding */ 
+            border: 1px solid #ccc; /* Gray border */
+            border-radius: 4px; /* Rounded borders */
+            box-sizing: border-box; /* Make sure that padding and width stays in place */
+            margin-top: 6px; /* Add a top margin */
+            margin-bottom: 16px; /* Bottom margin */
+            resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+          }
+          input[type=email], select, textarea {
+            width: 100%; /* Full width */
+            padding: 16px; /* Some padding */ 
+            border: 1px solid #ccc; /* Gray border */
+            border-radius: 4px; /* Rounded borders */
+            box-sizing: border-box; /* Make sure that padding and width stays in place */
+            margin-top: 6px; /* Add a top margin */
+            margin-bottom: 16px; /* Bottom margin */
+            resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+          }
+    
+          
+          /* Style the submit button with a specific background color etc */
+          input[type=submit] {
+            background-color: #95d0ed;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+          
+          /* When moving the mouse over the submit button, add a darker green color */
+          input[type=submit]:hover {
+            background-color: #51b1e0;
+          }
+          
+          /* Add a background color and some padding around the form */
+          .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            max-width: 600px;
+            margin: 15px;
+            
+          }
+          label{
+            font-size: 20px;
+          }
+          
+          </style>
+</head>
+<body>
+<nav>
+    <div class="wrapper">
+      <div class="logo"><a href="#">M car Service</a></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <li><a href="/mysite/DiplomnaRabota/home.html">Начало</a></li>
+        <li><a href="/mysite/DiplomnaRabota/contact-us.html">За нас</a></li>
+       
+        <li>
+          <a href="#" class="desktop-item">Услуги</a>
+          <input type="checkbox" id="showMega">
+          <label for="showMega" class="mobile-item">Услуги</label>
+          <div class="mega-box">
+            <div class="content">
+              <div class="row">
+                <img src="../images/service-main.jpg" alt="">
+              </div>
+              <div class="row">
+                <header>Често извършвани услуги</header>
+                <ul class="mega-links">
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/oil_change.php">Смяна на масла и филтри</a></li>
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/padsRotorsChange.php">Смяна на дискове и накладки</a></li>
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/suspensionChange.php">Смяна на консумативи по окачването</a></li>
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/a-c_service.php">Обслужване на климатици</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>Услуги за ел. и хибридни автомобили</header>
+                <ul class="mega-links">
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/batterry.php">Диагностика и поддръжка на батериите</a></li>
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/еEngineAndSystem.php">Сервиз на електрически двигател и системи за управление</a></li>
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/chargingMaintance.php">Обслужване на системи за зареждане</a></li>        
+                  <li><a href="../mysite/DiplomnaRabota/servicesPages/hybridSystemMaintance.php">Проверка на хибридната система</a></li>             
+                </ul>
+              </div>
+              <div class="row">
+                <header>Услуги с доп. запитване</header>
+                <ul class="mega-links">
+                  <li><a href="exhaustSystem.html">Генерации</a></li>
+                  <li><a href="tuning.html">Силов и визуален тунинг</a></li>
+                  <li><a href="painting.html">Боядисване</a></li>
+                  <li><a href="software.html">Софтуер</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="/mysite/DiplomnaRabota/for-us.html">Контакти</a></li>
+        <li>
+          <a href="/mysite/DiplomnaRabota/bookAService.php" class="desktop-item">Твоят профил</a>
+        </li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+
+      <div class = "hero">
+        <div class ="hero-image">
+        <div class = "hero-text">
+        <h1>Софтуер</h1>
+      </div>
+      </div>
+    </div>
+    
+    
+    
+    </header>
+    <main>
+      <div class = "infoLine">
+        <h3>Софтуер</h3>
+      </div>
+
+      <div class = "infoContainer">
+        <div class = "information">
+          <h1>M car Service</h1>
+          <div class = "pContainer">
+          <p>Ако имате нужда от различни услуги свързани с работа по компютъра на автомобила, като отключване на екстри, които автомобила има, но не излиза с тях от завоя направете запитване</p>
+        </div>
+        </div>
+
+        
+        <div class="container">
+            <form action="https://formsubmit.co/807c48ac3b7ad3d4073f3074878cb930" method="POST">
+          
+              <label for="fname">Цяло име</label>
+              <input type="text" id="fname" name="Name" placeholder="Името ви...">
+          
+              <label for="email">Имейл</label>
+              <input type="email" id="email" name="Email" placeholder="Имейлът ви..">
+          
+              <label for="country">Държава</label>
+              <select id="country" name="country">
+                <option value="bulgaria">България</option>
+                <option value="england">Англия</option>
+                <option value="russia">Русия</option>
+                <option value="other">Друга</option>
+              </select>
+          
+              <label for="subject">Тема</label>
+              <textarea id="subject" name="Message" placeholder="Напиши тук.." style="height:200px"></textarea>
+          
+              <input type="submit" value="Попитай">
+          
+            </form>
+          </div>
+        </div>
+
+    </main>
+    
+      <footer>
+  <div class = "top-footer-container">
+  <div class = "footer-content">
+    <div class = "foot">
+      <h1>Контакти</h1>
+      <ul >
+        <li><a href ="#"><i class="fa-solid fa-phone"></i> +359 7799 333</a></li>
+        <li><a href ="#"><i class="fa-solid fa-envelope"></i> m_car_service@gmail.com</a></li>
+        <li><a href ="#"><i class="fa-solid fa-location-dot"></i> гр.София ул.Христо Ботев 3</a></li>
+        <li><a href ="#"><i class="fa-regular fa-calendar-days"></i>  Понеделник - Петък: 9:30 - 18:30</a></li>
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Oще</h1>
+      <ul>
+        <li><a href ="#">Блог</a></li>
+        <li><a href ="#">Рент а кар</a></li>
+        <li><a href ="contact-us.html">За нас</a></li>
+        
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Полезни връзки</h1>
+      <ul>
+        <li><a href ="#">Проекти</a></li>
+        <li><a href ="contact-us.html">Общи условия</a></li>
+        <li><a href ="for-us.html">Често задавани въпроси</a></li>
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Социални мрежи</h1>
+      <ul>
+        <li><a href ="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+        <li><a href ="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+        <li><a href ="#"><i class="fa-brands fa-youtube"></i></a> Youtube</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class = "bottom-footer-container">
+    <div class ="bottom-content">
+      <p>&copy All rights reserved 2023.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

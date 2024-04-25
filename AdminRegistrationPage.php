@@ -35,7 +35,7 @@
 
 <head>
 
-    <title>CODE WITH HOSSEIN</title>
+    <title>Admin registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap v5.1.3 CDNs -->
@@ -110,41 +110,41 @@ body {
 
     <div class="login">
 
-        <h4 class="text-center">Make a new Registration!</h4>
+        <h4 class="text-center">Направи нова регистрация!</h4>
         
         <form method = "post" class="needs-validation">
           <div class="form-group was-validated">
-            <label class="form-label" for="Name">Enter your names</label>
+            <label class="form-label" for="Name">Въведи имената си</label>
                 <input class="form-control" type="text" name="Name" required>
           </div>
             <div class="form-group was-validated">
-                <label class="form-label" for="Email">Email Address</label>
+                <label class="form-label" for="Email">Имейл адрес</label>
                 <input class="form-control" type="Email" name="Email" required>
                 <div class="invalid-feedback">
-                    Please enter your email address
+                    Моля, въведи имейла си
                 </div>
             </div>
             <div class="form-group was-validated">
-                <label class="form-label" for="Password">Password</label>
+                <label class="form-label" for="Password">Парола</label>
                 <input class="form-control" type="text" name="Password" required>
                 <div class="invalid-feedback">
-                    Please enter your password
+                    Моля, въведи паролата си
                 </div>
             </div>
             <div class="form-group was-validated">
                 <label class="form-label" for="AdminId">AdminId</label>
                 <input class="form-control" type="text" name="AdminId" required>
                 <div class="invalid-feedback">
-                    Please enter your AdminId
+                    Моля, въведи своето, AdminId
                 </div>
             </div>
             <div class="form-group was-validated">
-              <label class="form-label" for="PhoneNumber">Phone Number</label>
+              <label class="form-label" for="PhoneNumber">Телефон</label>
               <input class="form-control" type="text" name="PhoneNumber" required>
               <div>
-                <button type="submit" name = "submit" value="Register" class="btn1 mt-4">Register</button>
+                <button type="submit" name = "submit" value="Register" class="btn1 mt-4">Регистрирай се</button>
             </div> 
-              <p>Already have an account? <a href = "AdminLoginPage.php"> Login here!</a></p>
+              <p>Вече имаш акаунт? <a href = "AdminLoginPage.php">Влез тук!</a></p>
             </div>
         </form>
     </div>

@@ -30,7 +30,7 @@ input[type=text],[type = datetime-local],[type = number] ,[type = file], select,
     background-color: #58b1f5;
 }
 .container , .Your_cars{
-  display: none;
+  display: block;
   border-radius: 5px;
   background-color: #b2c9db;
   padding: 20px;
@@ -55,7 +55,7 @@ input[type=text],[type = datetime-local],[type = number] ,[type = file], select,
   }
 
   .tab {
-    display: none;
+    display: block;
   }
   .menu_item{
     background-color: white;
@@ -95,7 +95,7 @@ input[type=text],[type = datetime-local],[type = number] ,[type = file], select,
   
 
   .addCar{
-    display: none;
+    display: block;
   }
   .ifAdd{
     margin: 1em;
@@ -125,11 +125,11 @@ input[type=text],[type = datetime-local],[type = number] ,[type = file], select,
     color: #333;
 }
 #showEndedAppointmentsBtn {
-  display: none; /* Скриване на бутона по подразбиране */
+  display: block; /* Скриване на бутона по подразбиране */
 }
 
 .tableContainer {
-    display: none;
+    display: block;
     margin-top: 1.5em;
     padding-top: 1em;
     background-color: #faf0e6;

@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
 
 <head>
 
-    <title>Log in</title>
+    <title>Mechanic Log in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap v5.1.3 CDNs -->

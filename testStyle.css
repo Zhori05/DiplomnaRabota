@@ -7,12 +7,12 @@
 }
 :root {
   --white: #fff;
-  --main-color: #22368f;
+  --main-color: #f44064;
   --grey: #434141;
   --light-grey: #aaa;
 }
 body {
- 
+  background-color: #f1f1f1;
   transition: all 0.5s ease;
 }
 .navbar {
@@ -36,8 +36,6 @@ body {
   font-weight: 500;
   color: var(--main-color);
 }
-
-
 .sidebar {
   background-color: var(--white);
   width: 260px;
@@ -52,28 +50,14 @@ body {
   transition: all 0.5s ease;
 }
 .sidebar.close {
-  padding: 90px 1px;
+  padding: 60px 0;
   width: 80px;
-}
-.mechanicName{
-  color: #343a40;
-  margin-bottom: 15px;
-  padding: 5px;
-  background-color: #0056b3;
-  text-align: center;
-  border-radius: 10px;
-  color: #f1f1f1;
-}
-.sidebar.close .mechanicName {
-  display: none;
-  
 }
 .sidebar::-webkit-scrollbar {
   display: none;
 }
 .menu_content {
   position: relative;
-  
 }
 .menu_title {
   margin: 15px 0;
@@ -99,11 +83,6 @@ body {
 .menu_items {
   padding: 0;
   list-style: none;
-  background-color: white;
-
-}
-.menu_item{
-  background-color: white;
 }
 .navlink_icon {
   position: relative;
@@ -185,103 +164,6 @@ body {
 #sidebarOpen {
   display: none;
 }
-.main-content{
-  background-image: url("../images/BMW_logo_(gray).svg.png");
-  background-size: 25%;
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
-    position: relative;
-    background-color: #eee;
-    min-height: 100vh;
-    width: 100%;
-    padding: 1rem;
-    margin-left:45px;
-}
-.tableContainer {
-    display: none;
-    margin-top: 1.5em;
-    padding-top: 1em;
-    background-color: #faf0e6;
-  
-    
-  }
-
-  .tableContainer h1{
-    text-align: center;
-    padding: 0.3em 0;
-    color: #3A3B3C;
-  }
- 
-
-  .tableContainerContent {
-    overflow-x: auto;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 3em;
-    z-index: 1;
-  }
-  #tableEndedAppointmets {
-    display: none; /* Скриване на таблиците по подразбиране */
-}
-
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    z-index: 1;
-  }
-
-  .table th, .table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .table thead th {
-    background-color: #343a40;
-    color: #fff;
-  }
-
-  .table tbody tr:nth-child(even) {
-    background-color: #f8f9fa; /* Цвят за четни редове */
-  }
-
-  .table tbody tr:nth-child(odd) {
-    background-color: #e9ecef; /* Цвят за нечетни редове */
-  }
-
-  .table tbody tr:hover {
-    background-color: #808181; /* Цвят при ховър */
-  }
-  .btn-primary {
-    background-color: #007bff;
-    font-size: 1em;
-    color: #fff;
-    border-radius: 10px;
-    padding: 1em 1.5em;
-    border: none;
-  }
-
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  tbody a{
-
-    text-decoration: none;
-    color: white;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .table th, .table td {
-      padding: 8px;
-    }
-
-    .btn-primary {
-      font-size: 14px;
-    }
-  }
 @media screen and (max-width: 768px) {
   #sidebarOpen {
     font-size: 25px;
@@ -295,8 +177,5 @@ body {
   }
   .sidebar.close .collapse_content {
     left: -100%;
-  }
-  .main-content{
-    margin-left: 0;
   }
 }

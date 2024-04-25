@@ -37,7 +37,6 @@ body {
   color: var(--main-color);
 }
 
-
 .sidebar {
   background-color: var(--white);
   width: 260px;
@@ -73,7 +72,6 @@ body {
 }
 .menu_content {
   position: relative;
-  
 }
 .menu_title {
   margin: 15px 0;
@@ -99,11 +97,6 @@ body {
 .menu_items {
   padding: 0;
   list-style: none;
-  background-color: white;
-
-}
-.menu_item{
-  background-color: white;
 }
 .navlink_icon {
   position: relative;
@@ -191,19 +184,105 @@ body {
   background-position-x: center;
   background-position-y: center;
   background-repeat: no-repeat;
+
     position: relative;
     background-color: #eee;
     min-height: 100vh;
     width: 100%;
-    padding: 1rem;
+    padding-top: 5em;
     margin-left:45px;
 }
-.tableContainer {
-    display: none;
-    margin-top: 1.5em;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #cae5e8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding-top: 1em;
+}
+
+
+.container h3 {
+    text-align: center;
+}
+
+.form {
+    padding: 1em;
+    
+}
+
+.form form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    padding: 0.5em;
+}
+
+
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.insertBtn{
+    background-color: #4caf50;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 15px; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+.tableContainer{
+ max-width: 1200px;
+    margin: 0 auto;
+    
+}
+.editBtn {
+    position: relative;
+    overflow: hidden;
+  }
+
+.editTextArea {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+.editBtn:hover .editTextArea {
+    display: block;
+  }
+
+  .tableContainer {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 2em;
     background-color: #faf0e6;
-  
+   border-radius: 10px;
     
   }
 
@@ -218,7 +297,7 @@ body {
     overflow-x: auto;
     max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 3em;
+    padding-bottom: 4em;
     z-index: 1;
   }
   #tableEndedAppointmets {
@@ -262,7 +341,23 @@ body {
     padding: 1em 1.5em;
     border: none;
   }
+  .btn-danger {
+    background-color: red;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    border: none;
+  }
 
+  .btn-activate {
+    background-color: #4caf50;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    border: none;
+  }
   .btn-primary:hover {
     background-color: #0056b3;
   }
@@ -271,7 +366,47 @@ body {
     text-decoration: none;
     color: white;
   }
+  #containerForServices{
+    display: none;
+  }
+  #serviceTable{
+    display: none;
+  }
+  #containerForMechanic{
+    display: none;
+  }
+  #mechanicTable{
+    display: none;
+  }
+  #appointmentsContainer{
+    display: none;
+  }
+  #userTable{
+    display: none;
+  } 
+  #blockedUserTable{
+    display: none;
+  }
 
+  @media screen and (max-width: 768px) {
+    #sidebarOpen {
+      font-size: 25px;
+      display: block;
+      margin-right: 10px;
+      cursor: pointer;
+      color: var(--grey);
+    }
+    .sidebar.close {
+      left: -100%;
+     
+    }
+    .sidebar.close .collapse_content {
+      left: -100%;
+    }
+    .main-content{
+      margin-left: 0;
+    }
+  }
 
   @media screen and (max-width: 768px) {
     .table th, .table td {
@@ -281,22 +416,35 @@ body {
     .btn-primary {
       font-size: 14px;
     }
+    .serviceContainer{
+      padding: 1em;
+    }
+    .mechanicsContainer{
+      padding: 1em;
+    }
   }
-@media screen and (max-width: 768px) {
-  #sidebarOpen {
-    font-size: 25px;
-    display: block;
-    margin-right: 10px;
-    cursor: pointer;
-    color: var(--grey);
+@media only screen and (max-width: 1295px) {
+    .form form {
+      flex-wrap: wrap;
+
+    }
   }
-  .sidebar.close {
-    left: -100%;
+  @media screen and (max-width: 580px) {
+    .table th, .table td {
+      padding: 8px; /* Намалете размера на отстъпите */
+      font-size: 19px; /* Намалете размера на шрифтовете */
+    }
+  
+    .btn-primary, .btn-danger {
+      padding: 8px 12px; /* Намалете размера на бутоните */
+      font-size: 10px; /* Намалете размера на шрифтовете на бутоните */
+    }
+  
+    /* Скриване на някои елементи или съкращаване на текста за по-малки екрани */
+    .navlink_icon::before {
+      width: calc(100% + 50px);
+    }
+    
   }
-  .sidebar.close .collapse_content {
-    left: -100%;
-  }
-  .main-content{
-    margin-left: 0;
-  }
-}
+  
+

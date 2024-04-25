@@ -42,18 +42,18 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // Form submission logic
+ 
   $dateTime = $_POST['datetime'];
   $dayOfWeek = (new DateTime($dateTime))->format('w');
   $hour = (new DateTime($dateTime))->format('H');
 
   if ($dayOfWeek == 0 || $hour < 9 || $hour >= 18) {
-    echo "Грешка: Работното време на сервиза е понеделник-събота от 9:00 до 18:00. Опитваш да запишеш час извън работно време";
+    header("location: warningMessage2.html");
     exit();
 
   }
 
-  // Останалата част от вашата логика
+ 
   $idcar = $_POST['car'];
   $serviceName = $_POST['service'];
   $mechanicName = $_POST['mechanicName'];
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $existing_appointments = $stmt_check->fetchAll(PDO::FETCH_ASSOC);
 
     if (!empty($existing_appointments)) {
-      echo "Грешка: Избраните ден, час, услуга и механик са заети. Моля, изберете други.";
+      header("location: warningMessage.html");
       exit();
     }
   } catch (PDOException $e) {
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO apointments (idCarOwner, idcar, ServiceName, mechanicName, dateTime, moreInfo, endDateTime) VALUES (?,?,?,?,?,?,?)";
     $connection->prepare($sql)->execute([$user_id, $idcar, $serviceName, $mechanicName, $dateTime, $moreInfo, $endDateTime->format('Y-m-d H:i:s')]);
     var_dump($user_id, $idcar, $serviceName, $mechanicName, $dateTime, $moreInfo, $endDateTime->format('Y-m-d H:i:s'));
-    echo "Appointment added successfully!";
+    header("location: successfullyAdded.html");
   } catch (PDOException $e) {
     echo "Error adding appointment: " . $e->getMessage();
   }
@@ -165,19 +165,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li class="menu_item">
-          <a href="#" class="nav_link week-work-link">
-            <span class="navlink_icon">
-              <i class='bx bxs-car-garage'></i>
-            </span>
-            <span class="navlink">Вашите автомибили</span>
-          </a>
-        </li>
-        <li class="menu_item">
           <a href="#" class="nav_link history-link">
             <span class="navlink_icon">
               <i class='bx bx-calendar-check'></i>
             </span>
-            <span class="navlink">История</span>
+            <span class="navlink">Сервизна книжка</span>
           </a>
         </li>
 
@@ -309,9 +301,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <textarea id="more" name="more" placeholder="Напиши тук: " style="height:200px"></textarea>
             </div>
           </div>
-          <div class="row">
-            <button type="submit" id="pickAService">Направи запитване</button>
-          </div>
+         
 
         </div>
         <button type="button" id="prevBtn">Предишна страница</button>
@@ -423,7 +413,7 @@ $(document).ready(function () {
 </script>
 
   <script src="./js/multiStepForm2.js"></script>
-  <script src="js/mechanicPage2.0.js"></script>
+  <script src="js/clientPage.js"></script>
 
 </body>
 

@@ -53,18 +53,7 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
       <ul class="nav-links">
         <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
         <li><a href="home.html">Начало</a></li>
-        <li><a href="#">За нас</a></li>
-        <li>
-          <a href="#" class="desktop-item">Dropdown Menu</a>
-          <input type="checkbox" id="showDrop">
-          <label for="showDrop" class="mobile-item">Dropdown Menu</label>
-          <ul class="drop-menu">
-            <li><a href="#"></a></li>
-            <li><a href="#">Drop menu 2</a></li>
-            <li><a href="#">Drop menu 3</a></li>
-            <li><a href="#">Drop menu 4</a></li>
-          </ul>
-        </li>
+        <li><a href="contact-us.html">За нас</a></li>
         <li>
           <a href="chooseAService.php" class="desktop-item">Услуги</a>
           <input type="checkbox" id="showMega">
@@ -77,38 +66,34 @@ if (isset($_POST['serviceName']) && isset($_POST['timeForExecution']) && isset($
               <div class="row">
                 <header>Често извършвани услуги</header>
                 <ul class="mega-links">
-                  <li><a href="#">Смяна на масла и филтри</a></li>
-                  <li><a href="#">Спирачки</a></li>
-                  <li><a href="#">Обслужване по график</a></li>
-                  <li><a href="a-c_service.html">Обслужване на климатици</a></li>
+                <li><a href="servicesPages/oil_change.php">Смяна на масла и филтри</a></li>
+                  <li><a href="servicesPages/padsRotorsChange.php">Смяна на дискове и накладки</a></li>
+                  <li><a href="servicesPages/suspensionChange.php">Смяна на консумативи по окачването</a></li>
+                  <li><a href="servicesPages/a-c_service.php">Обслужване на климатици</a></li>
                 </ul>
               </div>
               <div class="row">
                 <header>Други</header>
                 <ul class="mega-links">
-                  <li><a href="#">Обслужване на трансмисия</a></li>
-                  <li><a href="#">Охладителна система</a></li>
-                  <li><a href="#">Електроника</a></li>
-                  <li><a href="#">Компютърна диагностика</a></li>
-                  <li><a href="#">Оценка на състоянието на автомобили</a></li>
-                  <li><a href="#">Обслужване на ходовата част</a></li>
-                  <li><a href="#">Обслужване на двигателя</a></li>
-                  <li><a href="#">Горивна система</a></li>
+                <li><a href="servicesPages/batterry.php">Диагностика и поддръжка на батериите</a></li>
+                  <li><a href="servicesPages/еEngineAndSystem.php">Сервиз на електрически двигател и системи за управление</a></li>
+                  <li><a href="servicesPages/chargingMaintance.php">Обслужване на системи за зареждане</a></li>        
+                  <li><a href="servicesPages/hybridSystemMaintance.php">Проверка на хибридната система</a></li>
                 </ul>
               </div>
               <div class="row">
                 <header>Услуги с доп. запитване</header>
                 <ul class="mega-links">
-                  <li><a href="#">Генерации</a></li>
-                  <li><a href="#">Силов и визуален тунинг</a></li>
-                  <li><a href="#">Боядисване</a></li>
-                  <li><a href="#">Софтуер</a></li>
+                <li><a href="/mysite/DiplomnaRabota/tuningServices/exhaustSystem.html">Генерации</a></li>
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/tuning.html">Силов и визуален тунинг</a></li>
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/painting.html">Боядисване</a></li>
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/software.html">Софтуер</a></li>
                 </ul>
               </div>
             </div>
           </div>
         </li>
-        <li><a href="#">Контакти</a></li>
+        <li><a href="for-us.html">Контакти</a></li>
       </ul>
       <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
     </div>
